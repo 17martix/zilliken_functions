@@ -64,7 +64,7 @@ exports.onStatusUpdated = functions.region("europe-west1")
         } else if (doc.status == 3) {
             title = "Votre commande est en cours de préparation";
         } else if (doc.status == 4) {
-            title = "Votre commande est servie. Bon appétit";
+            title = "Votre commande est servie. Bon appétit!";
         }
 
         const db = admin.firestore();
