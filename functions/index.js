@@ -47,8 +47,12 @@ exports.onOrderCreated = functions.region("europe-west1")
 
 exports.onStatusUpdated = functions.region("europe-west1")
     .firestore.document("order/{orderId}").onUpdate((change, context) => {
+        const oldDoc = change.before.data();
         const doc = change.after.data();
-        let content;
+        if(oldDoc.status==doc.status){
+            return;
+        }else{
+            let content;
         let title;
 
         if (doc.orderLocation == 0) {
@@ -94,4 +98,6 @@ exports.onStatusUpdated = functions.region("europe-west1")
                     console.log("Can not find pushToken target user");
                 }
             });
+        }
+        
     });
